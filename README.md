@@ -1,16 +1,28 @@
-# React + Vite
+# React - Recepie Finder App - TASTY BOOK
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple todo application built with React.js and Vite. This app allows you to search for recepies and and add your favourites using User Interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search recepies: Easily search recepies by name
+- favourites: Add your favourite recepies to your favourite list.
 
-## React Compiler
+## Technologies Used#
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React.js: A JavaScript library for building user interfaces.
+- Vite: A fast and minimalist build tool for modern web development.
 
-## Expanding the ESLint configuration
+## Getting Started#
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- To get a local copy of the project up and running, follow these steps:
+- Clone the repository: 'https://github.com/Theera12/RecepieFinder'
+- Navigate to the project directory: cd your-repo
+- Install the dependencies: npm install
+- Start the development server: npm run dev
+
+## Install Dependencies
+
+- npm install eslint-plugin-react --save-dev
+- npm install --save-dev --save-exact prettier
+- npm install react-router
+- npm install react-icons --save
