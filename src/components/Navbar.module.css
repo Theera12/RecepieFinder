@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+
+.navbarContainer {
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 10px 10px 20px rgba(0.5, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px;
+}
+.navlinksContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 10px;
+  margin: 15px;
+}
+h1 {
+  font-size: 40px;
+  margin-left: 20px;
+  font-family: 'Inconsolata', monospace;
+  text-shadow: 0 1px 2px rgb(145, 135, 135);
+}
+span {
+  color: rgb(209, 68, 68);
+  font-size: 30px;
+}
+.navLink {
+  color: rgb(145, 135, 135);
+  font-size: 13px;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-color: rgb(209, 68, 68);
+  bottom: -5px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.navLink:hover::before {
+  transform: scaleX(1);
+}
+
+.active {
+  color: rgb(209, 68, 68);
+  font-weight: bold;
+}

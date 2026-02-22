@@ -1,9 +1,18 @@
 import './App.css';
-
+import Navbar from './components/Navbar';
+import Favourites from './pages/Favourites';
+import About from './pages/About';
+import Home from './pages/Home';
+import { Routes, Route } from 'react-router';
 function App() {
   return (
     <>
-      <h1>TASTY BOOK</h1>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="/favourites" element={<Favourites />}></Route>
+      </Routes>
     </>
   );
 }
