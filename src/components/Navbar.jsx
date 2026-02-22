@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <div className={styles.navbarContainer}>
       <h1>
-        C<span>OO</span>K B<span>OO</span>K
+        C<span>OO</span>KB<span>OO</span>K
       </h1>
       <div className={styles.navlinksContainer}>
         <NavLink
