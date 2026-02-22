@@ -1,0 +1,41 @@
+.recepieCard {
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgb(145, 135, 135);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.recepieCard img {
+  width: 100%;
+  height: auto;
+}
+
+.recepieCard h4 {
+  font-size: 1.5em;
+  color: #333;
+  margin: 10px;
+}
+
+.recepieCard .favouriteButton {
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: white;
+}
+.recepieCard .directionButton {
+  padding: 10px 15px;
+  background-color: rgb(209, 68, 68);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.directionButton:hover {
+  background-color: rgb(145, 135, 135);
+  box-shadow: 0 1px 2px rgb(145, 135, 135);
+}

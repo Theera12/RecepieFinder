@@ -1,9 +1,10 @@
 import styles from './RecepieCard.module.css';
 import { IoMdHeart } from 'react-icons/io';
-
+import { useState } from 'react';
 function Recepiecard({ recepie }) {
+  const [isFavouriteClicked, setIsFavouriteClicked] = useState(false);
   const onFavouriteButtonClick = () => {
-    alert('I am clicked');
+    setIsFavouriteClicked((prev) => !prev);
   };
   return (
     <div className={styles.recepieCard}>
@@ -14,8 +15,11 @@ function Recepiecard({ recepie }) {
         className={styles.favouriteButton}
         onClick={onFavouriteButtonClick}
       >
-        <IoMdHeart />
+        <IoMdHeart
+          style={isFavouriteClicked ? { color: 'red' } : { color: 'grey' }}
+        />
       </button>
+      <button className={styles.directionButton}>Directions</button>
     </div>
   );
 }

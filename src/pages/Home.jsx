@@ -1,4 +1,5 @@
 import RecepieCard from '../components/RecepieCard';
+import styles from './Home.module.css';
 import { useState } from 'react';
 function Home() {
   const recepies = [
@@ -16,7 +17,7 @@ function Home() {
     setSearchQuery(e.target.value);
   };
   return (
-    <>
+    <div className={styles.mainContainer}>
       <div>
         <form onSubmit={handleSearchSubmitForm}>
           <input
@@ -27,12 +28,12 @@ function Home() {
           <button type="submit">Search</button>
         </form>
       </div>
-      <div>
+      <div className={styles.homeContainer}>
         {recepies.map((recepie) => (
           <RecepieCard recepie={recepie} key={recepie.id} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 export default Home;
