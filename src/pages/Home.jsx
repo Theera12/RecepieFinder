@@ -1,25 +1,40 @@
 import RecepieCard from '../components/RecepieCard';
 import styles from './Home.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { searchRecepiesByCategory } from '../services/api';
+
 function Home() {
-  const recepies = [
-    { id: 0, title: 'pizza', url: 'www.google.com' },
-    { id: 1, title: 'Biriyani', url: 'www.google.com' },
-    { id: 2, title: 'ice Cream', url: 'www.google.com' },
-    { id: 3, title: 'taco', url: 'www.google.com' },
-    { id: 0, title: 'pizza', url: 'www.google.com' },
-    { id: 1, title: 'Biriyani', url: 'www.google.com' },
-    { id: 2, title: 'ice Cream', url: 'www.google.com' },
-    { id: 3, title: 'taco', url: 'www.google.com' },
-  ];
-  const [searchQuery, setSearchQuery] = useState('');
+  const [inputValue, setInputValue] = useState('Seafood');
+  const [searchQuery, setSearchQuery] = useState('Seafood');
+  const [recepies, setRecepies] = useState([]);
+  const [error, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadRecepieByCategory = async () => {
+      try {
+        setLoading(true);
+        const recepieByCategory = await searchRecepiesByCategory(searchQuery);
+        setRecepies(recepieByCategory);
+      } catch (err) {
+        setErrorMessage('Failed to load...');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadRecepieByCategory();
+  }, [searchQuery]);
+
   const onSearchSubmitForm = (e) => {
     e.preventDefault();
-    setSearchQuery('');
+    setSearchQuery(inputValue);
   };
+
   const onFormChange = (e) => {
-    setSearchQuery(e.target.value);
+    setInputValue(e.target.value);
   };
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.searchContainer}>
@@ -28,17 +43,22 @@ function Home() {
             type="text"
             placeholder="search your recepies..."
             onChange={onFormChange}
-            value={searchQuery}
+            value={inputValue}
           />
           <button type="submit">Search</button>
         </form>
       </div>
+
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+
       <div className={styles.homeContainer}>
         {recepies.map((recepie) => (
-          <RecepieCard recepie={recepie} key={recepie.id} />
+          <RecepieCard recepie={recepie} key={recepie.idMeal} />
         ))}
       </div>
     </div>
   );
 }
+
 export default Home;

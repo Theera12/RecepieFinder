@@ -8,8 +8,8 @@ function Recepiecard({ recepie }) {
   };
   return (
     <div className={styles.recepieCard}>
-      <img src={recepie.url} alt={recepie.title}></img>
-      <h4>{recepie.title}</h4>
+      <img src={recepie.strMealThumb} alt={recepie}></img>
+      <h4>{recepie.strMeal}</h4>
 
       <button
         className={styles.favouriteButton}
