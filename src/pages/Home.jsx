@@ -49,14 +49,16 @@ function Home() {
         </form>
       </div>
 
-      {loading && <p>Loading...</p>}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className={styles.homeContainer}>
+          {recepies.map((recepie) => (
+            <RecepieCard recepie={recepie} key={recepie.idMeal} />
+          ))}
+        </div>
+      )}
       {error && <p>{error}</p>}
-
-      <div className={styles.homeContainer}>
-        {recepies.map((recepie) => (
-          <RecepieCard recepie={recepie} key={recepie.idMeal} />
-        ))}
-      </div>
     </div>
   );
 }
