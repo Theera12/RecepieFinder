@@ -7,23 +7,28 @@ function Home() {
     { id: 1, title: 'Biriyani', url: 'www.google.com' },
     { id: 2, title: 'ice Cream', url: 'www.google.com' },
     { id: 3, title: 'taco', url: 'www.google.com' },
+    { id: 0, title: 'pizza', url: 'www.google.com' },
+    { id: 1, title: 'Biriyani', url: 'www.google.com' },
+    { id: 2, title: 'ice Cream', url: 'www.google.com' },
+    { id: 3, title: 'taco', url: 'www.google.com' },
   ];
   const [searchQuery, setSearchQuery] = useState('');
-  const handleSearchSubmitForm = (e) => {
+  const onSearchSubmitForm = (e) => {
     e.preventDefault();
-    console.log(searchQuery);
+    setSearchQuery('');
   };
-  const handleFormChange = (e) => {
+  const onFormChange = (e) => {
     setSearchQuery(e.target.value);
   };
   return (
     <div className={styles.mainContainer}>
-      <div>
-        <form onSubmit={handleSearchSubmitForm}>
+      <div className={styles.searchContainer}>
+        <form onSubmit={onSearchSubmitForm}>
           <input
             type="text"
-            placeholder="search Your recepies..."
-            onChange={handleFormChange}
+            placeholder="search your recepies..."
+            onChange={onFormChange}
+            value={searchQuery}
           />
           <button type="submit">Search</button>
         </form>

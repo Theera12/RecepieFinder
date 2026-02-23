@@ -1,8 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+
 .mainContainer {
   display: flex;
   flex-direction: column;
+  padding: 2rem;
+  gap: 3rem;
+  justify-content: center;
+  font-family: 'Inconsolata', monospace;
+}
+.searchContainer {
+  align-self: center;
 }
 .homeContainer {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.searchContainer input {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  margin: 15px;
+  box-shadow: 0px 8px 15px rgb(133, 128, 128);
+  padding: 5px;
+  border-radius: 20px;
+  width: 450px;
+  letter-spacing: 1px;
+}
+.searchContainer input::placeholder {
+  padding: 5px;
+  letter-spacing: 1px;
+}
+
+.searchContainer input:focus {
+  outline: none;
+  border-bottom: 2px solid #787070;
+}
+.searchContainer button {
+  border: none;
+  width: 80px;
+  height: 25px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  background-color: rgb(171, 33, 33);
+  color: rgb(240, 234, 234);
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgb(133, 128, 128);
+  transition: all 0.16s ease 0s;
+  outline: none;
+}
+.searchContainer button:hover {
+  background-color: rgb(145, 135, 135);
 }
