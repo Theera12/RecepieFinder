@@ -1,7 +1,7 @@
 import RecepieCard from '../components/RecepieCard';
 import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
-import { searchRecepiesByCategory } from '../services/api';
+import { searchRecepiesByCategory, loadCategories } from '../services/api';
 
 function Home() {
   const [inputValue, setInputValue] = useState('Seafood');
@@ -9,7 +9,29 @@ function Home() {
   const [recepies, setRecepies] = useState([]);
   const [error, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
+  // load the category suggestion
+  useEffect(() => {
+    const loadCategoryList = async () => {
+      try {
+        setLoading(true);
 
+        const categoriesData = await loadCategories();
+        setCategories(categoriesData);
+      } catch (err) {
+        setErrorMessage('Failed to load...');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCategoryList();
+  }, []);
+
+  useEffect(() => {
+    console.log(categories);
+  }, [categories]);
+  //filter based on search query
   useEffect(() => {
     const loadRecepieByCategory = async () => {
       try {
@@ -25,12 +47,12 @@ function Home() {
 
     loadRecepieByCategory();
   }, [searchQuery]);
-
+  //function to handle form submit
   const onSearchSubmitForm = (e) => {
     e.preventDefault();
     setSearchQuery(inputValue);
   };
-
+  //function to handle input value
   const onFormChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -48,9 +70,17 @@ function Home() {
           <button type="submit">Search</button>
         </form>
       </div>
+      {categories.map((category) => (
+        <button key={Date.now()}>{category.strCategory}</button>
+      ))}
 
       {loading ? (
         <p>Loading...</p>
+      ) : !recepies ? (
+        <h1>
+          'No Recepies Found...! <br />
+          Please search New Recepie..'
+        </h1>
       ) : (
         <div className={styles.homeContainer}>
           {recepies.map((recepie) => (
@@ -58,7 +88,12 @@ function Home() {
           ))}
         </div>
       )}
-      {error && <p>{error}</p>}
+      {error && (
+        <div>
+          <p>{error}:Failed To Fetch Recepies..</p>
+          <button onClick={() => setErrorMessage('')}>Dismiss</button>
+        </div>
+      )}
     </div>
   );
 }
