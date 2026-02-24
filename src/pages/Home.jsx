@@ -28,9 +28,6 @@ function Home() {
     loadCategoryList();
   }, []);
 
-  useEffect(() => {
-    console.log(categories);
-  }, [categories]);
   //filter based on search query
   useEffect(() => {
     const loadRecepieByCategory = async () => {
@@ -70,10 +67,27 @@ function Home() {
           <button type="submit">Search</button>
         </form>
       </div>
-      {categories.map((category) => (
-        <button key={Date.now()}>{category.strCategory}</button>
-      ))}
-
+      {loading ? (
+        <p>Loading...</p>
+      ) : !recepies ? (
+        <h1>
+          'No Recepies Found...! <br />
+          Please search New Recepie..'
+        </h1>
+      ) : (
+        <div className={styles.categoryContainer}>
+          {categories.map((category) => (
+            <button
+              key={category.strCategory}
+              onClick={(e) => {
+                setSearchQuery(e.target.innerText);
+              }}
+            >
+              {category.strCategory}
+            </button>
+          ))}
+        </div>
+      )}
       {loading ? (
         <p>Loading...</p>
       ) : !recepies ? (
