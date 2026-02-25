@@ -1,10 +1,14 @@
 import RecepieCard from '../components/RecepieCard';
 import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
-import { searchRecepiesByCategory, loadCategories } from '../services/api';
+import {
+  searchRecepiesByCategory,
+  loadCategories,
+  loadMealById,
+} from '../services/api';
 
 function Home() {
-  const [inputValue, setInputValue] = useState('Seafood');
+  const [inputValue, setInputValue] = useState('');
   const [searchQuery, setSearchQuery] = useState('Seafood');
   const [recepies, setRecepies] = useState([]);
   const [error, setErrorMessage] = useState('');
@@ -33,7 +37,10 @@ function Home() {
     const loadRecepieByCategory = async () => {
       try {
         setLoading(true);
-        const recepieByCategory = await searchRecepiesByCategory(searchQuery);
+        const recepieByCategory = await searchRecepiesByCategory(
+          searchQuery,
+          recepies
+        );
         setRecepies(recepieByCategory);
       } catch (err) {
         setErrorMessage('Failed to load...');
@@ -60,7 +67,7 @@ function Home() {
         <form onSubmit={onSearchSubmitForm}>
           <input
             type="text"
-            placeholder="search your recepies..."
+            placeholder="Search For recepie..."
             onChange={onFormChange}
             value={inputValue}
           />
@@ -69,11 +76,8 @@ function Home() {
       </div>
       {loading ? (
         <p>Loading...</p>
-      ) : !recepies ? (
-        <h1>
-          'No Recepies Found...! <br />
-          Please search New Recepie..'
-        </h1>
+      ) : !categories ? (
+        <h6>Failed to Load Suggestions..</h6>
       ) : (
         <div className={styles.categoryContainer}>
           {categories.map((category) => (
