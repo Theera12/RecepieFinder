@@ -14,7 +14,7 @@ export const loadMealById = async (id) => {
   const data = await resp.json();
 
   // Return the first meal object, or null if not found
-  return data.meals && data.meals.length > 0 ? data.meals[0] : null;
+  return data.meals[0] || null;
 };
 export const searchRecepiesByCategory = async (query, categorylist) => {
   let url;

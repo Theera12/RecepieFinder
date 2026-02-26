@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 function MealDetails() {
   const { MealId } = useParams();
 
-  const [mealdetails, setMealDetails] = useState(null);
+  const [mealDetails, setMealDetails] = useState(null);
   const [detailsLoading, setDetailsLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -31,7 +31,7 @@ function MealDetails() {
   return (
     <>
       <h2>Meal Details</h2>
-      {mealdetails && <pre>{JSON.stringify(mealdetails, null, 2)}</pre>}
+      {mealDetails && <p>{mealDetails.strInstructions}</p>}
     </>
   );
 }
