@@ -1,23 +1,21 @@
 import { IoMdHeart } from 'react-icons/io';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import styles from './RecepieCardList.module.css';
-import { loadMealById } from '../services/api';
+
 function RecepieCardList({ recepie }) {
   const [isFavouriteClicked, setIsFavouriteClicked] = useState(false);
-  const [favouriteId, setFavouriteId] = useState('');
-  const [mealDirectionData, setMealDirectionData] = useState([]);
-  const [directionId, setDirectionId] = useState('');
   const onFavouriteButtonClick = () => {
     setIsFavouriteClicked((prev) => !prev);
-    setFavouriteId(recepie.idMeal); //id of the favourite meal
   };
+  let navigate = useNavigate();
   const handledirectionMealData = () => {
-    setDirectionId(recepie.idMeal);
+    navigate(`/${recepie.idMeal}`);
   };
 
   return (
     <>
-      <img src={recepie.strMealThumb} alt={recepie}></img>
+      <img src={recepie.strMealThumb} alt={recepie.strMeal}></img>
       <h4>
         {recepie.strMeal.length > 10
           ? recepie.strMeal.substring(0, 10) + '...'
