@@ -6,7 +6,7 @@ export const loadCategories = async () => {
   const resp = await fetch(url);
   const data = await resp.json();
 
-  return data.meals;
+  return data.meals || [];
 };
 export const loadMealById = async (id) => {
   let url;
@@ -14,24 +14,27 @@ export const loadMealById = async (id) => {
   const resp = await fetch(url);
   const data = await resp.json();
 
-  return data.meals;
+  return data.meals || [];
 };
 export const searchRecepiesByCategory = async (query, categorylist) => {
   let url;
 
   const formattedQuery =
     query.charAt(0).toUpperCase() + query.slice(1).toLowerCase();
+  const categoryNames = categorylist.map((cat) =>
+    cat.strCategory.toLowerCase()
+  );
 
-  if (categorylist.includes(formattedQuery)) {
-    // Search by category
+  if (categoryNames.includes(query.toLowerCase())) {
     url = `${BASE_URL}/filter.php?c=${encodeURIComponent(formattedQuery)}`;
-  } else {
-    //fallback search by meal name
+  } else if (query.trim().length >= 3) {
     url = `${BASE_URL}/search.php?s=${encodeURIComponent(query)}`;
+  } else {
+    return [];
   }
 
   const resp = await fetch(url);
   const data = await resp.json();
 
-  return data.meals;
+  return data.meals || [];
 };

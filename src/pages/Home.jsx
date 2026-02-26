@@ -9,23 +9,24 @@ import {
 
 function Home() {
   const [inputValue, setInputValue] = useState('');
-  const [searchQuery, setSearchQuery] = useState('Seafood');
+  const [searchQuery, setSearchQuery] = useState('Cake');
   const [recepies, setRecepies] = useState([]);
   const [error, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
+  const [categoryLoading, setCategoryLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   // load the category suggestion
   useEffect(() => {
     const loadCategoryList = async () => {
       try {
-        setLoading(true);
+        setCategoryLoading(true);
 
         const categoriesData = await loadCategories();
         setCategories(categoriesData);
       } catch (err) {
         setErrorMessage('Failed to load...');
       } finally {
-        setLoading(false);
+        setCategoryLoading(false);
       }
     };
 
@@ -39,7 +40,7 @@ function Home() {
         setLoading(true);
         const recepieByCategory = await searchRecepiesByCategory(
           searchQuery,
-          recepies
+          categories
         );
         setRecepies(recepieByCategory);
       } catch (err) {
@@ -50,7 +51,7 @@ function Home() {
     };
 
     loadRecepieByCategory();
-  }, [searchQuery]);
+  }, [searchQuery, categories]);
   //function to handle form submit
   const onSearchSubmitForm = (e) => {
     e.preventDefault();
@@ -74,9 +75,9 @@ function Home() {
           <button type="submit">Search</button>
         </form>
       </div>
-      {loading ? (
+      {categoryLoading ? (
         <p>Loading...</p>
-      ) : !categories ? (
+      ) : categories.length === 0 ? (
         <h6>Failed to Load Suggestions..</h6>
       ) : (
         <div className={styles.categoryContainer}>
@@ -84,7 +85,7 @@ function Home() {
             <button
               key={category.strCategory}
               onClick={(e) => {
-                setSearchQuery(e.target.innerText);
+                setSearchQuery(category.strCategory);
               }}
             >
               {category.strCategory}
@@ -94,7 +95,7 @@ function Home() {
       )}
       {loading ? (
         <p>Loading...</p>
-      ) : !recepies ? (
+      ) : recepies.length === 0 ? (
         <h1>
           'No Recepies Found...! <br />
           Please search New Recepie..'
