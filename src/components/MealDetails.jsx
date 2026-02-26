@@ -1,6 +1,7 @@
 import { loadMealById } from '../services/api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import styles from './MealDetails.module.css';
 let vId = '';
 const Numbers = Array.from({ length: 20 }, (_, i) => i + 1);
 function MealDetails() {
@@ -36,28 +37,39 @@ function MealDetails() {
   return (
     <>
       {mealDetails && (
-        <div>
-          <h2>{mealDetails.strMeal}</h2>
-          <img src={mealDetails.strMealThumb} />
-          <h5>Category:{mealDetails.strCategory}</h5>
-          <h5>Cusine:{mealDetails.strArea}</h5>
-          <h5>Ingredients</h5>
-          {Numbers.map((number) => {
-            const ingredient = mealDetails[`strIngredient${number}`];
-            const measure = mealDetails[`strMeasure${number}`];
-            return (
-              ingredient && (
-                <ul>
-                  <li key={number}>
-                    {ingredient}:{measure}
-                  </li>
-                </ul>
-              )
-            );
-          })}
-          <h5>Instructions:</h5>
-          <p>{mealDetails.strInstructions}</p>
-          <iframe src={`https://www.youtube.com/embed/${vId}`}></iframe>
+        <div className={styles.outerContainer}>
+          <div className={styles.imageContainer}>
+            <h1>{mealDetails.strMeal.toUpperCase()}</h1>
+            <iframe src={`https://www.youtube.com/embed/${vId}`}></iframe>
+          </div>
+          <div className={styles.innerContainer}>
+            <div>
+              <h2>Ingredients</h2>
+              <ul>
+                {Numbers.map((number) => {
+                  const ingredient = mealDetails[`strIngredient${number}`];
+                  const measure = mealDetails[`strMeasure${number}`];
+                  return (
+                    ingredient && (
+                      <li key={number}>
+                        {ingredient}--{measure}
+                      </li>
+                    )
+                  );
+                })}
+              </ul>
+            </div>
+            <div>
+              <div className={styles.instructionContainer}>
+                <h2>Category</h2>
+                <h3>{mealDetails.strCategory}</h3>
+                <h2>Cusine</h2>
+                <h3>{mealDetails.strArea}</h3>
+              </div>
+              <h2>Instructions:</h2>
+              <p>{mealDetails.strInstructions}</p>
+            </div>
+          </div>
         </div>
       )}
     </>

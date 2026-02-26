@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+.outerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: 'Inconsolata', monospace;
+}
+.outerContainer h2 {
+  color: rgb(209, 68, 68);
+}
+.innerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 180px;
+  padding: 50px;
+  margin: 20px;
+}
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  align-self: auto;
+}
+li {
+  padding: 10px;
+}
+p {
+  padding-top: 10px;
+}
+.instructionContainer {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 5px;
+  padding-left: 0px;
+}
+iframe {
+  height: 300px;
+}
