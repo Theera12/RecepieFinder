@@ -9,12 +9,12 @@ export const loadCategories = async () => {
   return data.meals || [];
 };
 export const loadMealById = async (id) => {
-  const url = `${BASE_URL}/lookup.php?i=${id}`;
+  const url = `${BASE_URL}/lookup.php?i=${encodeURIComponent(id)}`;
   const resp = await fetch(url);
   const data = await resp.json();
 
   // Return the first meal object, or null if not found
-  return data.meals;
+  return data.meals && data.meals.length > 0 ? data.meals[0] : null;
 };
 export const searchRecepiesByCategory = async (query, categorylist) => {
   let url;

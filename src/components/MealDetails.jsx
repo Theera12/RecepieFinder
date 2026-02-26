@@ -3,21 +3,20 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 function MealDetails() {
-  let { MealId } = useParams();
+  const { MealId } = useParams();
 
-  const [mealDetails, setMealDetails] = useState([]);
+  const [mealdetails, setMealDetails] = useState(null);
   const [detailsLoading, setDetailsLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const MealData = async () => {
       try {
         setDetailsLoading(true);
-
         const mealDataById = await loadMealById(MealId);
         setMealDetails(mealDataById);
-        console.log(mealDetails[0].strMeal);
       } catch (err) {
-        <p> 'Failed to load...'</p>;
+        setError('Failed to load...');
       } finally {
         setDetailsLoading(false);
       }
@@ -25,14 +24,16 @@ function MealDetails() {
 
     MealData();
   }, [MealId]);
-  useEffect(() => {
-    console.log({ mealDetails });
-  }, [MealId]);
+
+  if (detailsLoading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <>
-      <p>hi</p>
+      <h2>Meal Details</h2>
+      {mealdetails && <pre>{JSON.stringify(mealdetails, null, 2)}</pre>}
     </>
   );
 }
+
 export default MealDetails;
