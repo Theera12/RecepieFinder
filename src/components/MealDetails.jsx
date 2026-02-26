@@ -30,8 +30,19 @@ function MealDetails() {
 
   return (
     <>
-      <h2>Meal Details</h2>
-      {mealDetails && <p>{mealDetails.strInstructions}</p>}
+      {mealDetails && (
+        <div>
+          <h2>{mealDetails.strMeal}</h2>
+          <img src={mealDetails.strMealThumb} alt={mealDetails.strMeal} />
+          <h5>{mealDetails.strMealThumb}</h5>
+          <p>{mealDetails.strInstructions}</p>
+          <video>
+            <source src={mealDetails.strYoutube} type="video/mp4"></source>
+            <source src={mealDetails.strYoutube} type="video/webm"></source>
+            <source src={mealDetails.strYoutube} type="video/ogg"></source>
+          </video>
+        </div>
+      )}
     </>
   );
 }
