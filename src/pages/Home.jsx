@@ -1,4 +1,4 @@
-import RecepieCard from '../components/RecepieCard';
+import RecepieCard from '../features/RecepieCard';
 import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
 import {
