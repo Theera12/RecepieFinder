@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 20px;
   font-family: 'Inconsolata', monospace;
+  padding-top: 10px;
 }
 .outerContainer h2 {
   color: rgb(209, 68, 68);
@@ -15,6 +16,7 @@
   gap: 180px;
   padding: 50px;
   margin: 20px;
+  padding-top: 10px;
 }
 .imageContainer {
   display: flex;
@@ -33,9 +35,11 @@ li {
 }
 p {
   padding-top: 10px;
+  white-space: pre-line;
+  line-height: 1.6;
 }
 .instructionContainer {
-  padding: 10px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -43,5 +47,5 @@ p {
   padding-left: 0px;
 }
 iframe {
-  height: 300px;
+  height: 400px;
 }
