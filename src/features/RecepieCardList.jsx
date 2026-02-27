@@ -1,12 +1,22 @@
 import { IoMdHeart } from 'react-icons/io';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useRecepieContext } from '../contexts/RecepieContext';
 import styles from './RecepieCardList.module.css';
 
 function RecepieCardList({ recepie }) {
-  const [isFavouriteClicked, setIsFavouriteClicked] = useState(false);
-  const onFavouriteButtonClick = () => {
-    setIsFavouriteClicked((prev) => !prev);
+  const { addToFavourites, removeFavourites, isFavourite } =
+    useRecepieContext();
+  const favourite = isFavourite(recepie.idMeal);
+
+  // const [isFavouriteClicked, setIsFavouriteClicked] = useState(false);
+
+  const onFavouriteButtonClick = (e) => {
+    //  setIsFavouriteClicked((prev) => !prev);
+    e.preventDefault();
+    e.stopPropagation();
+    if (favourite) removeFavourites(recepie.idMeal);
+    else addToFavourites(recepie);
   };
   let navigate = useNavigate();
   const handledirectionMealData = () => {
@@ -28,7 +38,7 @@ function RecepieCardList({ recepie }) {
       >
         <IoMdHeart
           className={styles.icon}
-          style={isFavouriteClicked ? { color: 'red' } : { color: 'grey' }}
+          style={favourite ? { color: 'red' } : { color: 'grey' }}
         />
       </button>
       <button

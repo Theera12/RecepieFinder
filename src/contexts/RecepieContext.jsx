@@ -21,10 +21,12 @@ export const RecepieProvider = ({ children }) => {
   };
 
   const removeFavourites = (recepieId) => {
-    setFavourites((prev) => prev.filter((recepie) => recepie.id !== recepieId));
+    setFavourites((prev) =>
+      prev.filter((recepie) => recepie.idMeal !== recepieId)
+    );
   };
   const isFavourite = (recepieId) => {
-    return favourites.some((recepie) => recepie.id === recepieId);
+    return favourites.some((recepie) => recepie.idMeal === recepieId);
   };
 
   const value = { favourites, addToFavourites, removeFavourites, isFavourite };
