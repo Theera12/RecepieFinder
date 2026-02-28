@@ -1,7 +1,7 @@
 import { useRecepieContext } from '../contexts/RecepieContext';
 import RecepieCard from '../features/RecepieCard';
 
-import styles from '../pages/Home.module.css';
+import styles from './Favourite.module.css';
 
 function Favourites() {
   const { favourites } = useRecepieContext();
@@ -11,7 +11,7 @@ function Favourites() {
       {favourites.length > 0 ? (
         <div>
           <h1>MY FAVOURITES</h1>
-          <div className={styles.homeContainer}>
+          <div className={styles.favouriteContainer}>
             {favourites.map((recepie) => (
               <RecepieCard recepie={recepie} key={recepie.idMeal} />
             ))}

@@ -14,7 +14,7 @@ function RecepieCardList({ recepie }) {
   const onFavouriteButtonClick = (e) => {
     //  setIsFavouriteClicked((prev) => !prev);
     e.preventDefault();
-    e.stopPropagation();
+
     if (favourite) removeFavourites(recepie.idMeal);
     else addToFavourites(recepie);
   };
