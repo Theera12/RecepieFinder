@@ -1,11 +1,7 @@
 import RecepieCard from '../features/RecepieCard';
 import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
-import {
-  searchRecepiesByCategory,
-  loadCategories,
-  loadMealById,
-} from '../services/api';
+import { searchRecepiesByCategory, loadCategories } from '../services/api';
 
 function Home() {
   const [inputValue, setInputValue] = useState('');
@@ -51,7 +47,7 @@ function Home() {
     };
 
     loadRecepieByCategory();
-  }, [searchQuery, categories]);
+  }, [searchQuery]);
   //function to handle form submit
   const onSearchSubmitForm = (e) => {
     e.preventDefault();

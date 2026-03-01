@@ -5,10 +5,10 @@ import About from './pages/About';
 import Home from './pages/Home';
 import MealDetails from './features/MealDetails';
 import { Routes, Route } from 'react-router';
-import { RecepieProvider } from './contexts/RecepieContext';
+
 function App() {
   return (
-    <RecepieProvider>
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
@@ -16,7 +16,7 @@ function App() {
         <Route path="/favourites" element={<Favourites />}></Route>
         <Route path="/:MealId" element={<MealDetails />}></Route>
       </Routes>
-    </RecepieProvider>
+    </>
   );
 }
 
