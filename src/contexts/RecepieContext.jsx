@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  useCallback,
-} from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const RecepieContext = createContext();
 
@@ -13,45 +7,31 @@ export const useRecepieContext = () => useContext(RecepieContext);
 export const RecepieProvider = ({ children }) => {
   const [favourites, setFavourites] = useState([]);
 
-  // Load from localStorage on mount
   useEffect(() => {
-    try {
-      const storedFavs = localStorage.getItem('favourites');
-      if (storedFavs) setFavourites(JSON.parse(storedFavs));
-    } catch (err) {
-      console.error('Failed to load favourites from localStorage', err);
-    }
+    const storedFavs = localStorage.getItem('favourites');
+    if (storedFavs) setFavourites(JSON.parse(storedFavs));
   }, []);
 
-  // Save to localStorage whenever favourites change
   useEffect(() => {
     localStorage.setItem('favourites', JSON.stringify(favourites));
   }, [favourites]);
 
-  // Add favourite
-  const addToFavourites = useCallback((recepie) => {
-    setFavourites((prev) => {
-      if (prev.some((r) => r.idMeal === recepie.idMeal)) return prev;
-      return [...prev, recepie];
-    });
-  }, []);
+  const addToFavourites = (recepie) => {
+    setFavourites((prev) => [...prev, recepie]);
+  };
 
-  // Remove favourite
-  const removeFavourites = useCallback((recepieId) => {
-    setFavourites((prev) => prev.filter((r) => r.idMeal !== recepieId));
-  }, []);
+  const removeFavourites = (recepieId) => {
+    setFavourites((prev) =>
+      prev.filter((recepie) => recepie.idMeal !== recepieId)
+    );
+  };
+  const isFavourite = (recepieId) => {
+    return favourites.some((recepie) => recepie.idMeal === recepieId);
+  };
 
-  // Check if favourite
-  const isFavourite = useCallback(
-    (recepieId) => favourites.some((r) => r.idMeal === recepieId),
-    [favourites]
-  );
+  const value = { favourites, addToFavourites, removeFavourites, isFavourite };
 
   return (
-    <RecepieContext.Provider
-      value={{ favourites, addToFavourites, removeFavourites, isFavourite }}
-    >
-      {children}
-    </RecepieContext.Provider>
+    <RecepieContext.Provider value={value}>{children}</RecepieContext.Provider>
   );
 };
