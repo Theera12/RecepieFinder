@@ -1,10 +1,10 @@
-import { useRecepieContext } from '../contexts/RecepieContext';
-import RecepieCard from '../features/RecepieCard';
+import { useRecipeContext } from '../contexts/RecipeContext';
+import RecipeCard from '../features/RecipeCard';
 
 import styles from './Favourite.module.css';
 
 function Favourites() {
-  const { favourites } = useRecepieContext();
+  const { favourites } = useRecipeContext();
 
   return (
     <>
@@ -12,13 +12,15 @@ function Favourites() {
         <div>
           <h1>MY FAVOURITES</h1>
           <div className={styles.favouriteContainer}>
-            {favourites.map((recepie) => (
-              <RecepieCard recepie={recepie} key={recepie.idMeal} />
+            {favourites.map((recipe) => (
+              <RecipeCard recipe={recipe} key={recipe.idMeal} />
             ))}
           </div>
         </div>
       ) : (
-        <p>No Favourites Yet.. Start adding favourites..</p>
+        <h2 className={styles.empty}>
+          No Favourites Yet.. Start adding favourites..
+        </h2>
       )}
     </>
   );

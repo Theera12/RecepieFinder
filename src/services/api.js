@@ -16,7 +16,7 @@ export const loadMealById = async (id) => {
   // Return the first meal object, or null if not found
   return data.meals[0] || null;
 };
-export const searchRecepiesByCategory = async (query, categorylist) => {
+export const searchRecipesByCategory = async (query, categorylist) => {
   let url;
   const formattedQuery = query.toLowerCase();
   const categoryNames = categorylist.map((cat) =>

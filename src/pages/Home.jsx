@@ -1,12 +1,12 @@
-import RecepieCard from '../features/RecepieCard';
+import RecipeCard from '../features/RecipeCard';
 import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
-import { searchRecepiesByCategory, loadCategories } from '../services/api';
+import { searchRecipesByCategory, loadCategories } from '../services/api';
 
 function Home() {
   const [inputValue, setInputValue] = useState('');
   const [searchQuery, setSearchQuery] = useState('Cake');
-  const [recepies, setRecepies] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   const [error, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [categoryLoading, setCategoryLoading] = useState(true);
@@ -31,14 +31,14 @@ function Home() {
 
   //filter based on search query
   useEffect(() => {
-    const loadRecepieByCategory = async () => {
+    const loadRecipeByCategory = async () => {
       try {
         setLoading(true);
-        const recepieByCategory = await searchRecepiesByCategory(
+        const recipeByCategory = await searchRecipesByCategory(
           searchQuery,
           categories
         );
-        setRecepies(recepieByCategory);
+        setRecipes(recipeByCategory);
       } catch (err) {
         setErrorMessage('Failed to load...');
       } finally {
@@ -46,7 +46,7 @@ function Home() {
       }
     };
 
-    loadRecepieByCategory();
+    loadRecipeByCategory();
   }, [searchQuery]);
   //function to handle form submit
   const onSearchSubmitForm = (e) => {
@@ -91,21 +91,21 @@ function Home() {
       )}
       {loading ? (
         <p>Loading...</p>
-      ) : recepies.length === 0 ? (
-        <h1>
-          'No Recepies Found...! <br />
-          Please search New Recepie..'
-        </h1>
+      ) : recipes.length === 0 ? (
+        <h2>
+          'No Recipes Found...! <br />
+          Please search New Recipie..'
+        </h2>
       ) : (
         <div className={styles.homeContainer}>
-          {recepies.map((recepie) => (
-            <RecepieCard recepie={recepie} key={recepie.idMeal} />
+          {recipes.map((recipe) => (
+            <RecipeCard recipe={recipe} key={recipe.idMeal} />
           ))}
         </div>
       )}
       {error && (
         <div>
-          <p>{error}:Failed To Fetch Recepies..</p>
+          <p>{error}:Failed To Fetch Recipes..</p>
           <button onClick={() => setErrorMessage('')}>Dismiss</button>
         </div>
       )}

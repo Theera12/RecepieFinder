@@ -3,3 +3,8 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
+.empty {
+  text-align: center;
+  margin-top: 40px;
+  opacity: 0.8;
+}
