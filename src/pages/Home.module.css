@@ -56,13 +56,15 @@ h1 {
   text-align: center;
   padding: 10px;
 }
-.categoryContainer {
+.categoryContainer,
+.pagination {
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 5px;
 }
-.categoryContainer button {
+.categoryContainer button,
+.pagination button {
   border: none;
   width: auto;
   padding: 10px;
@@ -73,6 +75,12 @@ h1 {
   transition: all 0.16s ease 0s;
   outline: none;
 }
-.categoryContainer button:hover {
+
+.categoryContainer button:hover,
+.pagination button:hover {
   background-color: rgb(145, 135, 135);
+}
+
+.pagination li {
+  list-style-type: none;
 }

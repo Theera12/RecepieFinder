@@ -99,7 +99,7 @@ function MyRecipe() {
   };
   return (
     <Container>
-      <h1>My Recipes</h1>
+      <h1>MY RECIPES</h1>
 
       {isAdding ? (
         <RecipeForm onSave={handleSaveRecipe} editRecipe={editRecipe} />

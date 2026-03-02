@@ -11,6 +11,8 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [categoryLoading, setCategoryLoading] = useState(true);
   const [categories, setCategories] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recipesPerPage] = useState(8);
   // load the category suggestion
   useEffect(() => {
     const loadCategoryList = async () => {
@@ -52,12 +54,23 @@ function Home() {
   const onSearchSubmitForm = (e) => {
     e.preventDefault();
     setSearchQuery(inputValue);
+    setCurrentPage(1);
   };
   //function to handle input value
   const onFormChange = (e) => {
     setInputValue(e.target.value);
   };
 
+  const indexOfLastRecipe = currentPage * recipesPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+  const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Calculate total pages
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(recipes.length / recipesPerPage); i++) {
+    pageNumbers.push(i);
+  }
   return (
     <div className={styles.mainContainer}>
       <div className={styles.searchContainer}>
@@ -82,6 +95,7 @@ function Home() {
               key={category.strCategory}
               onClick={(e) => {
                 setSearchQuery(category.strCategory);
+                setCurrentPage(1);
               }}
             >
               {category.strCategory}
@@ -98,11 +112,21 @@ function Home() {
         </h2>
       ) : (
         <div className={styles.homeContainer}>
-          {recipes.map((recipe) => (
+          {currentRecipes.map((recipe) => (
             <RecipeCard recipe={recipe} key={recipe.idMeal} />
           ))}
         </div>
       )}
+      {/* Pagination Controls */}
+      <nav>
+        <ul className={styles.pagination}>
+          {pageNumbers.map((number) => (
+            <li key={number} className={currentPage === number ? 'active' : ''}>
+              <button onClick={() => paginate(number)}>{number}</button>
+            </li>
+          ))}
+        </ul>
+      </nav>
       {error && (
         <div>
           <p>{error}:Failed To Fetch Recipes..</p>
