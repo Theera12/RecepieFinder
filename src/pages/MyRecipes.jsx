@@ -1,6 +1,48 @@
 import { useState, useEffect } from 'react';
 import RecipeForm from '../features/NewRecipeForm';
 import RecipeList from '../features/RecipeList';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+  justify-content: center;
+  font-family: 'Inconsolata', monospace;
+  padding-left: 4rem;
+  button {
+    padding: 10px 15px;
+    background-color: rgb(209, 68, 68);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: rgb(145, 135, 135);
+    box-shadow: 0 1px 2px rgb(145, 135, 135);
+  }
+  input,
+  textarea {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    margin: 15px;
+    box-shadow: 0px 8px 15px rgb(133, 128, 128);
+    padding: 5px;
+    border-radius: 20px;
+    width: 200px;
+    letter-spacing: 1px;
+  }
+  input:focus,
+  textare:focus {
+    outline: none;
+    border-bottom: 2px solid #787070;
+  }
+  textarea {
+    height: 100px;
+  }
+`;
 
 function MyRecipe() {
   const [editRecipe, setEditRecipe] = useState(null);
@@ -39,10 +81,12 @@ function MyRecipe() {
     setEditRecipe(myRecipe);
   };
 
+  const onAddClick = () => {
+    setIsAdding(true);
+  };
   return (
-    <div>
-      <h2>My Recipe Page</h2>
-
+    <Container>
+      <h1>My Recipes</h1>
       <RecipeForm onSave={handleSaveRecipe} editRecipe={editRecipe} />
 
       <RecipeList
@@ -50,7 +94,7 @@ function MyRecipe() {
         onDelete={handleDelete}
         onEdit={handleEdit}
       />
-    </div>
+    </Container>
   );
 }
 

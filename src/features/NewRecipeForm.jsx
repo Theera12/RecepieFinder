@@ -1,5 +1,21 @@
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
+const Form = styled.div`
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 8px 15px rgb(224, 214, 214);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  gap: 5px;
+  button {
+    width: 250px;
+  }
+`;
 function NewRecipeForm({ editRecipe, onSave }) {
   const [name, setName] = useState('');
   const [instruction, setInstruction] = useState('');
@@ -32,7 +48,7 @@ function NewRecipeForm({ editRecipe, onSave }) {
   };
 
   return (
-    <div>
+    <Form>
       <form type="submit" onSubmit={handleRecipeForm}>
         <input
           type="text"
@@ -42,8 +58,8 @@ function NewRecipeForm({ editRecipe, onSave }) {
         />
         <br />
         <br />
-        <input
-          type="textrea"
+        <textarea
+          type="text"
           placeholder="Enter Instructions..."
           onChange={handleInstruction}
           value={instruction}
@@ -52,7 +68,7 @@ function NewRecipeForm({ editRecipe, onSave }) {
         <br />
         <button>Add Recipe</button>
       </form>
-    </div>
+    </Form>
   );
 }
 export default NewRecipeForm;
