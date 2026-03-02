@@ -1,7 +1,8 @@
 import RecipeItem from './RecipeItem';
-function RecipeList(myRecipes, onDelete, onEdit) {
+
+function RecipeList({ myRecipes, onDelete, onEdit }) {
   return myRecipes.length === 0 ? (
-    <p>No Receipes Yet...Add New...</p>
+    <p>No Recipes Yet... Add New...</p>
   ) : (
     <div>
       {myRecipes.map((myRecipe) => (
@@ -15,4 +16,5 @@ function RecipeList(myRecipes, onDelete, onEdit) {
     </div>
   );
 }
+
 export default RecipeList;

@@ -3,32 +3,28 @@ import RecipeForm from '../features/NewRecipeForm';
 import RecipeList from '../features/RecipeList';
 
 function MyRecipe() {
-  const [myRecipes, setMyRecipes] = useState([]);
   const [editRecipe, setEditRecipe] = useState(null);
 
-  // Load from localStorage
-  useEffect(() => {
-    const savedRecipes = JSON.parse(localStorage.getItem('myRecipes'));
-    if (savedRecipes) {
-      setMyRecipes(savedRecipes);
-    }
-  }, []);
+  const [myRecipes, setMyRecipes] = useState(() => {
+    const saved = localStorage.getItem('myRecipes');
+    return saved ? JSON.parse(saved) : [];
+  });
 
   // Save to localStorage
   useEffect(() => {
-    localStorage.setItem('myRecipes', JSON.stringify(myRSecipes));
+    localStorage.setItem('myRecipes', JSON.stringify(myRecipes));
   }, [myRecipes]);
 
   // Add or Update Recipe
   const handleSaveRecipe = (myRecipe) => {
     if (editRecipe) {
       const updatedRecipes = myRecipes.map((item) =>
-        item.id === editRecipe.id ? myRecipe : item
+        item.id === editRecipe.id ? { ...myRecipe, id: editRecipe.id } : item
       );
       setMyRecipes(updatedRecipes);
       setEditRecipe(null);
     } else {
-      setMyRecipes([...myRecipes, { ...myRecipe, id: Date.now() }]);
+      setMyRecipes((prev) => [...prev, { ...myRecipe, id: Date.now() }]);
     }
   };
 
@@ -44,7 +40,7 @@ function MyRecipe() {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div>
       <h2>My Recipe Page</h2>
 
       <RecipeForm onSave={handleSaveRecipe} editRecipe={editRecipe} />

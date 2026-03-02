@@ -6,8 +6,8 @@ function NewRecipeForm({ editRecipe, onSave }) {
 
   useEffect(() => {
     if (editRecipe) {
-      setNewRecipeTitle(editRecipe.name);
-      setNewRecipeInstruction(editRecipe.instruction);
+      setName(editRecipe.name);
+      setInstruction(editRecipe.instruction);
     }
   }, [editRecipe]);
 
@@ -33,7 +33,7 @@ function NewRecipeForm({ editRecipe, onSave }) {
 
   return (
     <div>
-      <form type="submit" onChange={handleRecipeForm}>
+      <form type="submit" onSubmit={handleRecipeForm}>
         <input
           type="text"
           placeholder="Enter RecipeName.."
