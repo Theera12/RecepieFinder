@@ -24,7 +24,7 @@ function RecipeCardList({ recipe }) {
 
   return (
     <>
-      <img src={recipe.strMealThumb} alt={recipe.strMeal}></img>
+      <img src={recipe.strMealThumb} alt={recipe.strMeal} loading="lazy"></img>
       <h4>
         {recipe.strMeal.length > 10
           ? recipe.strMeal.substring(0, 10) + '...'
