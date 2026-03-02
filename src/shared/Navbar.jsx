@@ -21,7 +21,7 @@ function Navbar() {
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
         >
-          About
+          My Recipes
         </NavLink>
         <NavLink
           to="/favourites"

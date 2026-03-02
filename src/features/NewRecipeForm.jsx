@@ -38,7 +38,7 @@ function NewRecipeForm({ editRecipe, onSave }) {
           type="text"
           placeholder="Enter RecipeName.."
           onChange={handleTitle}
-          value={newName}
+          value={name}
         />
         <br />
         <br />

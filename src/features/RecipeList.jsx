@@ -1,18 +1,17 @@
 import RecipeItem from './RecipeItem';
 function RecipeList(myRecipes, onDelete, onEdit) {
-  if (myRecipes.length === 0) {
-    return <p>No Receipes Yet...Add New...</p>;
-  }
-  return (
+  return myRecipes.length === 0 ? (
+    <p>No Receipes Yet...Add New...</p>
+  ) : (
     <div>
-      {myRecipes.map((myRecipe) => {
+      {myRecipes.map((myRecipe) => (
         <RecipeItem
           key={myRecipe.id}
           myRecipe={myRecipe}
           onEdit={onEdit}
           onDelete={onDelete}
-        />;
-      })}
+        />
+      ))}
     </div>
   );
 }
