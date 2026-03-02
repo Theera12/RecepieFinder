@@ -1,38 +1,56 @@
-import useState from 'react';
+import { useState, useEffect } from 'react';
 
-function NewRecipeForm() {
-  const [newRecipeTitle, setNewRecipeTitle] = useState('');
-  const [newRecipeInstruction, setNewRecipeInstruction] = useState('');
+function NewRecipeForm({ editRecipe, onSave }) {
+  const [name, setName] = useState('');
+  const [instruction, setInstruction] = useState('');
 
-  const handleNewTitle = (e) => {
-    setNewRecipeTitle(e.target.value);
+  useEffect(() => {
+    if (editRecipe) {
+      setNewRecipeTitle(editRecipe.name);
+      setNewRecipeInstruction(editRecipe.instruction);
+    }
+  }, [editRecipe]);
+
+  const handleTitle = (e) => {
+    setName(e.target.value);
   };
 
-  const handleNewInstruction = (e) => {
-    setNewRecipeInstruction(e.target.value);
+  const handleInstruction = (e) => {
+    setInstruction(e.target.value);
   };
 
-  const handleNewRecipeForm = (e) => {
+  const handleRecipeForm = (e) => {
     e.preventDefault();
-    const newRecipe = { newRecipeTitle, newRecipeInstruction };
+    onSave({
+      id: editRecipe?.id,
+      name,
+      instruction,
+    });
+
+    setName('');
+    setInstruction('');
   };
 
   return (
     <div>
-      <form type="submit" onChange={handleNewRecipeForm}>
+      <form type="submit" onChange={handleRecipeForm}>
         <input
           type="text"
           placeholder="Enter RecipeName.."
-          onChange={handleNewTitle}
-          value={newRecipeTitle}
+          onChange={handleTitle}
+          value={newName}
         />
+        <br />
+        <br />
         <input
           type="textrea"
           placeholder="Enter Instructions..."
-          onChange={handleNewInstruction}
-          value={newRecipeInstruction}
+          onChange={handleInstruction}
+          value={instruction}
         />
-        <button>Save</button>
+        <br />
+        <br />
+        <button>Add Recipe</button>
       </form>
     </div>
   );
