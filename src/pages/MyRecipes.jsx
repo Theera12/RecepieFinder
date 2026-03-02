@@ -1,8 +1,8 @@
-function About() {
+function MyRecipes() {
   return (
     <>
       <p>About Page..</p>
     </>
   );
 }
-export default About;
+export default MyRecipes;

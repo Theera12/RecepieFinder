@@ -16,7 +16,7 @@ function Navbar() {
           Home
         </NavLink>
         <NavLink
-          to="/about"
+          to="/myrecipes"
           className={({ isActive }) =>
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
