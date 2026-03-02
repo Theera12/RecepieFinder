@@ -43,10 +43,21 @@ const Container = styled.div`
     height: 100px;
   }
 `;
+const AddButton = styled.button`
+  width: 250px;
+  height: 300px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 8px 15px rgb(224, 214, 214);
+  font-size: 50px;
+  padding: 10px;
+  margin-left: 15px;
+  transform: scale(1.05);
+`;
 
 function MyRecipe() {
   const [editRecipe, setEditRecipe] = useState(null);
-
+  const [isAdding, setIsAdding] = useState(false);
   const [myRecipes, setMyRecipes] = useState(() => {
     const saved = localStorage.getItem('myRecipes');
     return saved ? JSON.parse(saved) : [];
@@ -68,6 +79,7 @@ function MyRecipe() {
     } else {
       setMyRecipes((prev) => [...prev, { ...myRecipe, id: Date.now() }]);
     }
+    setIsAdding(false);
   };
 
   // Delete Recipe
@@ -79,6 +91,7 @@ function MyRecipe() {
   // Edit Recipe
   const handleEdit = (myRecipe) => {
     setEditRecipe(myRecipe);
+    setIsAdding(true);
   };
 
   const onAddClick = () => {
@@ -87,7 +100,14 @@ function MyRecipe() {
   return (
     <Container>
       <h1>My Recipes</h1>
-      <RecipeForm onSave={handleSaveRecipe} editRecipe={editRecipe} />
+
+      {isAdding ? (
+        <RecipeForm onSave={handleSaveRecipe} editRecipe={editRecipe} />
+      ) : (
+        <AddButton type="button" onClick={onAddClick}>
+          +
+        </AddButton>
+      )}
 
       <RecipeList
         myRecipes={myRecipes}

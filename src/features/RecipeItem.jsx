@@ -1,18 +1,28 @@
 import styled from 'styled-components';
-
 const Card = styled.div`
   width: 250px;
+  height: 300px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0px 8px 15px rgb(224, 214, 214);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding: 10px;
-  gap: 5px;
+  gap: 8px;
+
   h2 {
     align-self: center;
+    margin: 0;
+  }
+
+  p {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  button {
+    cursor: pointer;
   }
 `;
 function RecipeItem({ myRecipe, onDelete, onEdit }) {
