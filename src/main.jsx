@@ -6,11 +6,11 @@ import App from './App.jsx';
 import { RecipeProvider } from './contexts/RecipeContext';
 
 createRoot(document.getElementById('root')).render(
-  <RecipeProvider>
-    <StrictMode>
+  <StrictMode>
+    <RecipeProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </StrictMode>
-  </RecipeProvider>
+    </RecipeProvider>
+  </StrictMode>
 );

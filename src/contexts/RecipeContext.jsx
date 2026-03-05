@@ -5,12 +5,15 @@ const RecipeContext = createContext();
 export const useRecipeContext = () => useContext(RecipeContext);
 
 export const RecipeProvider = ({ children }) => {
-  const [favourites, setFavourites] = useState([]);
-
-  useEffect(() => {
+  //const [favourites, setFavourites] = useState([]);
+  const [favourites, setFavourites] = useState(() => {
     const storedFavs = localStorage.getItem('favourites');
-    if (storedFavs) setFavourites(JSON.parse(storedFavs));
-  }, []);
+    return storedFavs ? JSON.parse(storedFavs) : [];
+  });
+  // useEffect(() => {
+  // const storedFavs = localStorage.getItem('favourites');
+  //if (storedFavs) setFavourites(JSON.parse(storedFavs));
+  //}, []);
 
   useEffect(() => {
     localStorage.setItem('favourites', JSON.stringify(favourites));
