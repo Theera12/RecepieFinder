@@ -1,6 +1,7 @@
 import { loadMealById } from '../services/api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import styles from './MealDetails.module.css';
 
 let vId = '';
@@ -11,6 +12,7 @@ function MealDetails() {
   const [mealDetails, setMealDetails] = useState(null);
   const [detailsLoading, setDetailsLoading] = useState(true);
   const [error, setError] = useState('');
+  let nav = useNavigate();
 
   //loads a single selected meal my id
   useEffect(() => {
@@ -51,6 +53,10 @@ function MealDetails() {
     localStorage.setItem(`list`, JSON.stringify(shoppingList));
   }, [shoppingList]);
 
+  const handleMyShopingNavigation = () => {
+    nav(`/myshopping`);
+  };
+
   //To embed video id to youtube
   if (mealDetails) {
     const url = mealDetails.strYoutube;
@@ -67,7 +73,10 @@ function MealDetails() {
         <div className={styles.outerContainer}>
           <div className={styles.imageContainer}>
             <h1>{mealDetails.strMeal.toUpperCase()}</h1>
-            <iframe src={`https://www.youtube.com/embed/${vId}`}></iframe>
+            <iframe
+              title="recipe-video"
+              src={`https://www.youtube.com/embed/${vId}`}
+            ></iframe>
           </div>
           <div className={styles.innerContainer}>
             <div>
@@ -80,12 +89,14 @@ function MealDetails() {
                     ingredient && (
                       <li key={number}>
                         {ingredient}--{measure}
+                        {/*Adds the ingredients to shopping list */}
                         <button
-                          key={number}
+                          className={styles.plusButton}
                           onClick={() =>
                             setShoppingList((prev) => [
                               ...prev,
-                              { ingredient, measure },
+
+                              { ingredient, measure, id: Date.now() },
                             ])
                           }
                         >
@@ -98,23 +109,26 @@ function MealDetails() {
               </ul>
             </div>
             <div>
+              {/*Adds Star Rating */}
               {Stars.map((star) => (
                 <button
                   key={star}
                   onClick={() => setRating(star)}
-                  style={{
-                    cursor: 'pointer',
-                    color: star <= rating ? '#ffc107' : '#e4e5e9',
-                    fontSize: '2rem',
-                    background: 'none',
-                    border: 'none',
-                  }}
+                  className={`${styles.starButton} ${
+                    star <= rating ? styles.activeStar : ''
+                  }`}
                 >
                   ★
                 </button>
               ))}
               <p>Your rating: {rating} / 5</p>
             </div>
+            <button
+              className={styles.shoppingButton}
+              onClick={handleMyShopingNavigation}
+            >
+              My Shopping{' '}
+            </button>
             <div>
               <div className={styles.instructionContainer}>
                 <h2>Category</h2>

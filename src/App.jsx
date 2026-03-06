@@ -4,6 +4,7 @@ import Favourites from './pages/Favourites';
 import MyRecipes from './pages/MyRecipes';
 import Home from './pages/Home';
 import MealDetails from './features/MealDetails';
+import MyShopping from './features/MyShopping';
 import { Routes, Route } from 'react-router';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/myrecipes" element={<MyRecipes />}></Route>
         <Route path="/favourites" element={<Favourites />}></Route>
         <Route path="/:MealId" element={<MealDetails />}></Route>
+        <Route path="/myshopping" element={<MyShopping />}></Route>
       </Routes>
     </>
   );

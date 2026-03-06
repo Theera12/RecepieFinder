@@ -31,6 +31,14 @@ function Navbar() {
         >
           Favourites
         </NavLink>
+        <NavLink
+          to="/myshopping"
+          className={({ isActive }) =>
+            isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+          }
+        >
+          My Shopping
+        </NavLink>
       </div>
     </div>
   );

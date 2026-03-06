@@ -33,6 +33,39 @@ h1 {
 }
 li {
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.plusButton,
+.shoppingButton {
+  padding: 5px 10px;
+  background-color: rgb(209, 68, 68);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.shoppingButton {
+  height: 50px;
+}
+.plusButton:hover,
+.shoppingButton:hover {
+  background-color: rgb(145, 135, 135);
+  box-shadow: 0 1px 2px rgb(145, 135, 135);
+}
+.starButton {
+  font-size: 25px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #e4e5e9;
+}
+
+.activeStar {
+  color: #ffc107;
 }
 p {
   padding-top: 10px;

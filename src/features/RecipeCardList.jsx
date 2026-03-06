@@ -21,7 +21,7 @@ function RecipeCardList({ recipe }) {
   );
 
   //Function to navigate to meal details page
-  const handledirectionMealData = useCallback(() => {
+  const handleDirectionMealData = useCallback(() => {
     navigate(`/${recipe.idMeal}`);
   }, [navigate, recipe.idMeal]);
 
@@ -46,7 +46,7 @@ function RecipeCardList({ recipe }) {
       </button>
       <button
         className={styles.directionButton}
-        onClick={handledirectionMealData}
+        onClick={handleDirectionMealData}
       >
         Recipe
       </button>
