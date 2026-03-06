@@ -48,7 +48,7 @@ function RecipeCardList({ recipe }) {
         className={styles.directionButton}
         onClick={handledirectionMealData}
       >
-        Directions
+        Recipe
       </button>
     </>
   );

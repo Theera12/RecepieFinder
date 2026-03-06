@@ -5,7 +5,7 @@ import styles from './MealDetails.module.css';
 
 let vId = '';
 const Numbers = Array.from({ length: 20 }, (_, i) => i + 1);
-
+const Stars = Array.from({ length: 5 }, (_, i) => i + 1);
 function MealDetails() {
   const { MealId } = useParams();
   const [mealDetails, setMealDetails] = useState(null);
@@ -29,6 +29,18 @@ function MealDetails() {
     MealData();
   }, [MealId]);
 
+  //  Initialize state from localStorage or 0
+  const [rating, setRating] = useState(() => {
+    const savedRating = localStorage.getItem(`meal-rating-${MealId}`);
+    return savedRating ? JSON.parse(savedRating) : 0;
+  });
+
+  //  Persist to localStorage when rating changes
+  useEffect(() => {
+    localStorage.setItem(`meal-rating-${MealId}`, JSON.stringify(rating));
+  }, [rating, MealId]);
+
+  //To embed video id to youtube
   if (mealDetails) {
     const url = mealDetails.strYoutube;
     const str = url.split('=');
@@ -62,6 +74,24 @@ function MealDetails() {
                   );
                 })}
               </ul>
+            </div>
+            <div>
+              {Stars.map((star) => (
+                <button
+                  key={star}
+                  onClick={() => setRating(star)}
+                  style={{
+                    cursor: 'pointer',
+                    color: star <= rating ? '#ffc107' : '#e4e5e9',
+                    fontSize: '2rem',
+                    background: 'none',
+                    border: 'none',
+                  }}
+                >
+                  ★
+                </button>
+              ))}
+              <p>Your rating: {rating} / 5</p>
             </div>
             <div>
               <div className={styles.instructionContainer}>
