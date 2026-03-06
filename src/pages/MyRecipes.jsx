@@ -58,6 +58,7 @@ const AddButton = styled.button`
 function MyRecipe() {
   const [editRecipe, setEditRecipe] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
+  //lazy loading to avoid two renders due to strictmode
   const [myRecipes, setMyRecipes] = useState(() => {
     const saved = localStorage.getItem('myRecipes');
     return saved ? JSON.parse(saved) : [];
@@ -94,6 +95,7 @@ function MyRecipe() {
     setIsAdding(true);
   };
 
+  //Add New Recipe
   const onAddClick = () => {
     setIsAdding(true);
   };

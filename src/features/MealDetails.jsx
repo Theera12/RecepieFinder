@@ -2,14 +2,17 @@ import { loadMealById } from '../services/api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './MealDetails.module.css';
+
 let vId = '';
 const Numbers = Array.from({ length: 20 }, (_, i) => i + 1);
+
 function MealDetails() {
   const { MealId } = useParams();
   const [mealDetails, setMealDetails] = useState(null);
   const [detailsLoading, setDetailsLoading] = useState(true);
   const [error, setError] = useState('');
 
+  //loads a single selected meal my id
   useEffect(() => {
     const MealData = async () => {
       try {
@@ -25,6 +28,7 @@ function MealDetails() {
 
     MealData();
   }, [MealId]);
+
   if (mealDetails) {
     const url = mealDetails.strYoutube;
     const str = url.split('=');

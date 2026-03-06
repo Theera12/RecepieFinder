@@ -13,6 +13,19 @@ function Home() {
   const [categories, setCategories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage] = useState(8);
+
+  // Pagination Calcultion
+  const indexOfLastRecipe = currentPage * recipesPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+  const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Calculate total pages
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(recipes.length / recipesPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   // load the category suggestion
   useEffect(() => {
     const loadCategoryList = async () => {
@@ -50,27 +63,19 @@ function Home() {
 
     loadRecipeByCategory();
   }, [searchQuery]);
+
   //function to handle form submit
   const onSearchSubmitForm = (e) => {
     e.preventDefault();
     setSearchQuery(inputValue);
     setCurrentPage(1);
   };
+
   //function to handle input value
   const onFormChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const indexOfLastRecipe = currentPage * recipesPerPage;
-  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
-  const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  // Calculate total pages
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(recipes.length / recipesPerPage); i++) {
-    pageNumbers.push(i);
-  }
   return (
     <div className={styles.mainContainer}>
       <div className={styles.searchContainer}>
@@ -127,6 +132,7 @@ function Home() {
           ))}
         </ul>
       </nav>
+      {/*Error Handling */}
       {error && (
         <div>
           <p>{error}:Failed To Fetch Recipes..</p>

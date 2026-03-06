@@ -8,6 +8,8 @@ function RecipeCardList({ recipe }) {
   const { addToFavourites, removeFavourites, isFavourite } = useRecipeContext();
   const favourite = isFavourite(recipe.idMeal);
   let navigate = useNavigate();
+
+  //Adding Favourite recipe
   const onFavouriteButtonClick = useCallback(
     (e) => {
       e.preventDefault();
@@ -18,6 +20,7 @@ function RecipeCardList({ recipe }) {
     [favourite, recipe, addToFavourites, removeFavourites]
   );
 
+  //Function to navigate to meal details page
   const handledirectionMealData = useCallback(() => {
     navigate(`/${recipe.idMeal}`);
   }, [navigate, recipe.idMeal]);

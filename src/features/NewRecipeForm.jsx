@@ -20,6 +20,7 @@ function NewRecipeForm({ editRecipe, onSave }) {
   const [name, setName] = useState('');
   const [instruction, setInstruction] = useState('');
 
+  //Edit  Operation
   useEffect(() => {
     if (editRecipe) {
       setName(editRecipe.name);
@@ -27,14 +28,17 @@ function NewRecipeForm({ editRecipe, onSave }) {
     }
   }, [editRecipe]);
 
+  //Save the name of the recipe
   const handleTitle = (e) => {
     setName(e.target.value);
   };
 
+  //Save Instructions
   const handleInstruction = (e) => {
     setInstruction(e.target.value);
   };
 
+  //Form to hold the information
   const handleRecipeForm = (e) => {
     e.preventDefault();
     onSave({

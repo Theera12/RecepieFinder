@@ -1,5 +1,6 @@
 const BASE_URL = 'https://www.themealdb.com/api/json/v1/1';
 
+//fetching recipe categories list
 export const loadCategories = async () => {
   let url;
   url = `${BASE_URL}/list.php?c=list`;
@@ -8,14 +9,16 @@ export const loadCategories = async () => {
 
   return data.meals || [];
 };
+
+//load a single meal id for meal details component
 export const loadMealById = async (id) => {
   const url = `${BASE_URL}/lookup.php?i=${encodeURIComponent(id)}`;
   const resp = await fetch(url);
   const data = await resp.json();
-
-  // Return the first meal object, or null if not found
   return data.meals[0] || null;
 };
+
+//fetching based on search query
 export const searchRecipesByCategory = async (query, categorylist) => {
   let url;
   const formattedQuery = query.toLowerCase();
