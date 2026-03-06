@@ -35,10 +35,21 @@ function MealDetails() {
     return savedRating ? JSON.parse(savedRating) : 0;
   });
 
-  //  Persist to localStorage when rating changes
+  //  Persist to localStorage  rating changes
   useEffect(() => {
     localStorage.setItem(`meal-rating-${MealId}`, JSON.stringify(rating));
   }, [rating, MealId]);
+
+  //  Initialize state from localStorage or empty array
+  const [shoppingList, setShoppingList] = useState(() => {
+    const savedList = localStorage.getItem('list');
+    return savedList ? JSON.parse(savedList) : [];
+  });
+
+  //  Persist to localStorage  when added to shopping list
+  useEffect(() => {
+    localStorage.setItem(`list`, JSON.stringify(shoppingList));
+  }, [shoppingList]);
 
   //To embed video id to youtube
   if (mealDetails) {
@@ -69,6 +80,17 @@ function MealDetails() {
                     ingredient && (
                       <li key={number}>
                         {ingredient}--{measure}
+                        <button
+                          key={number}
+                          onClick={() =>
+                            setShoppingList((prev) => [
+                              ...prev,
+                              { ingredient, measure },
+                            ])
+                          }
+                        >
+                          +
+                        </button>
                       </li>
                     )
                   );
