@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
   padding: 10px;
   button {
     padding: 10px 15px;

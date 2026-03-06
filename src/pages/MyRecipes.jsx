@@ -35,12 +35,15 @@ const Container = styled.div`
     letter-spacing: 1px;
   }
   input:focus,
-  textare:focus {
+  textarea:focus {
     outline: none;
     border-bottom: 2px solid #787070;
   }
   textarea {
     height: 100px;
+  }
+  @media (max-width: 768px) {
+    padding-left: 1rem;
   }
 `;
 const AddButton = styled.button`
@@ -52,7 +55,9 @@ const AddButton = styled.button`
   font-size: 50px;
   padding: 10px;
   margin-left: 15px;
-  transform: scale(1.05);
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 function MyRecipe() {

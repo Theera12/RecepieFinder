@@ -55,3 +55,9 @@ span {
   color: rgb(209, 68, 68);
   font-weight: 600;
 }
+@media (max-width: 768px) {
+  .navlinksContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
