@@ -67,7 +67,8 @@ h1 {
   gap: 5px;
 }
 .categoryContainer button,
-.pagination button {
+.pagination button,
+.errorText button {
   border: none;
   width: auto;
   padding: 10px;
@@ -80,7 +81,8 @@ h1 {
 }
 
 .categoryContainer button:hover,
-.pagination button:hover {
+.pagination button:hover,
+.errorText button:hover {
   background-color: rgb(145, 135, 135);
 }
 

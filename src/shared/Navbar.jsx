@@ -3,6 +3,7 @@ import styles from './Navbar.module.css';
 import { NavLink } from 'react-router';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import bookIcon from '../assets/book.png';
+import trolley from '../assets/trolley.png';
 
 function Navbar() {
   const [navbarIcon, setNavbarIcon] = useState(false);
@@ -12,12 +13,18 @@ function Navbar() {
   };
   return (
     <div className={styles.navbarContainer}>
-      <h1>
-        C<span>OO</span>KB<span>OO</span>K
-      </h1>
-      <NavLink to="/">
-        <img src={bookIcon} alt="book icon" className={styles.bookImage}></img>
-      </NavLink>
+      <div className={styles.headIcon}>
+        <NavLink to="/">
+          <img
+            src={bookIcon}
+            alt="book icon"
+            className={styles.bookImage}
+          ></img>
+        </NavLink>
+        <h1>
+          C<span>OO</span>KB<span>OO</span>K
+        </h1>
+      </div>
       <button onClick={handleIcon} className={styles.hamburger}>
         <GiHamburgerMenu />
       </button>
@@ -57,7 +64,11 @@ function Navbar() {
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
         >
-          My Shopping
+          <img
+            src={trolley}
+            alt="shopping list"
+            className={styles.trolleyIcon}
+          />
         </NavLink>
       </div>
     </div>

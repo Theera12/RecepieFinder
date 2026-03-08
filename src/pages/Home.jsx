@@ -148,8 +148,8 @@ function Home() {
       )}
       {/*Error Handling */}
       {error && (
-        <div>
-          <p className={styles.errorText}>{error}:Failed To Fetch Recipes..</p>
+        <div className={styles.errorText}>
+          <p>{error}:Failed To Fetch Recipes..</p>
           <button onClick={() => setErrorMessage('')}>Dismiss</button>
         </div>
       )}
