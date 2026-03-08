@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import MealDetails from './features/MealDetails';
 import MyShopping from './features/MyShopping';
+import Footer from './shared/Footer';
 import { Routes, Route } from 'react-router';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/myshopping" element={<MyShopping />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
+      <Footer />
     </>
   );
 }
