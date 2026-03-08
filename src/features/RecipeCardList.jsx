@@ -22,7 +22,7 @@ function RecipeCardList({ recipe }) {
 
   //Function to navigate to meal details page
   const handleDirectionMealData = useCallback(() => {
-    navigate(`/${recipe.idMeal}`);
+    navigate(`/meal/${recipe.idMeal}`);
   }, [navigate, recipe.idMeal]);
 
   return (

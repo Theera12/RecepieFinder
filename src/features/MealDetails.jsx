@@ -8,7 +8,7 @@ import { IoBagAddOutline } from 'react-icons/io5';
 const Numbers = Array.from({ length: 20 }, (_, i) => i + 1);
 const Stars = Array.from({ length: 5 }, (_, i) => i + 1);
 function MealDetails() {
-  const { MealId } = useParams();
+  const { mealId } = useParams();
   const [mealDetails, setMealDetails] = useState(null);
   const [detailsLoading, setDetailsLoading] = useState(true);
   const [error, setError] = useState('');
@@ -19,7 +19,7 @@ function MealDetails() {
     const MealData = async () => {
       try {
         setDetailsLoading(true);
-        const mealDataById = await loadMealById(MealId);
+        const mealDataById = await loadMealById(mealId);
         setMealDetails(mealDataById);
       } catch (err) {
         setError('Failed to load...');
@@ -29,18 +29,18 @@ function MealDetails() {
     };
 
     MealData();
-  }, [MealId]);
+  }, [mealId]);
 
   //  Initialize rating state from localStorage or 0
   const [rating, setRating] = useState(() => {
-    const savedRating = localStorage.getItem(`meal-rating-${MealId}`);
+    const savedRating = localStorage.getItem(`meal-rating-${mealId}`);
     return savedRating ? JSON.parse(savedRating) : 0;
   });
 
   //  Persist to localStorage  rating changes
   useEffect(() => {
-    localStorage.setItem(`meal-rating-${MealId}`, JSON.stringify(rating));
-  }, [rating, MealId]);
+    localStorage.setItem(`meal-rating-${mealId}`, JSON.stringify(rating));
+  }, [rating, mealId]);
 
   //  Initialize state from localStorage or empty array for shopping list
   const [shoppingList, setShoppingList] = useState(() => {
