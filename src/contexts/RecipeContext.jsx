@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+} from 'react';
 
 const RecipeContext = createContext();
 
@@ -17,23 +24,31 @@ export const RecipeProvider = ({ children }) => {
   }, [favourites]);
 
   //function add to favourites
-  const addToFavourites = (recipe) => {
+  const addToFavourites = useCallback((recipe) => {
     setFavourites((prev) => [...prev, recipe]);
-  };
+  }, []);
 
   //function to remove from favourites
-  const removeFavourites = (recipeId) => {
+  const removeFavourites = useCallback((recipeId) => {
     setFavourites((prev) =>
       prev.filter((recipe) => recipe.idMeal !== recipeId)
     );
-  };
+  }, []);
 
   //function to check if favourite or not
   const isFavourite = (recipeId) => {
     return favourites.some((recipe) => recipe.idMeal === recipeId);
   };
 
-  const value = { favourites, addToFavourites, removeFavourites, isFavourite };
+  const value = useMemo(
+    () => ({
+      favourites,
+      addToFavourites,
+      removeFavourites,
+      isFavourite,
+    }),
+    [favourites]
+  );
 
   return (
     <RecipeContext.Provider value={value}>{children}</RecipeContext.Provider>

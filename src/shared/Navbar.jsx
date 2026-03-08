@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './Navbar.module.css';
 import { NavLink } from 'react-router';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import bookIcon from '../assets/book.png';
 
 function Navbar() {
   const [navbarIcon, setNavbarIcon] = useState(false);
@@ -14,6 +15,9 @@ function Navbar() {
       <h1>
         C<span>OO</span>KB<span>OO</span>K
       </h1>
+      <NavLink to="/">
+        <img src={bookIcon} alt="book icon" className={styles.bookImage}></img>
+      </NavLink>
       <button onClick={handleIcon} className={styles.hamburger}>
         <GiHamburgerMenu />
       </button>

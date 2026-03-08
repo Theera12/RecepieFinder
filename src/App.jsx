@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './shared/Navbar';
 import Favourites from './pages/Favourites';
 import MyRecipes from './pages/MyRecipes';
+import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import MealDetails from './features/MealDetails';
 import MyShopping from './features/MyShopping';
@@ -15,8 +16,9 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/myrecipes" element={<MyRecipes />}></Route>
         <Route path="/favourites" element={<Favourites />}></Route>
-        <Route path="/:MealId" element={<MealDetails />}></Route>
+        <Route path="/meal/:MealId" element={<MealDetails />} />
         <Route path="/myshopping" element={<MyShopping />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>
   );

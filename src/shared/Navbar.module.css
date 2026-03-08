@@ -62,10 +62,19 @@ span {
   border: none;
   font-size: 24px;
 }
+.bookImage {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease-in-out;
+}
+.bookImage:hover {
+  transform: scale(1.1);
+}
 
 @media (max-width: 768px) {
   .hamburger {
     display: block;
+    color: rgb(209, 68, 68);
   }
 
   .navlinksContainer {

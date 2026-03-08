@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router';
 import styles from './MealDetails.module.css';
 import { IoBagAddOutline } from 'react-icons/io5';
 
-let vId = '';
 const Numbers = Array.from({ length: 20 }, (_, i) => i + 1);
 const Stars = Array.from({ length: 5 }, (_, i) => i + 1);
 function MealDetails() {
@@ -59,11 +58,7 @@ function MealDetails() {
   };
 
   //To embed video id to youtube
-  if (mealDetails) {
-    const url = mealDetails.strYoutube;
-    const str = url.split('=');
-    vId = str[str.length - 1];
-  }
+  const vId = mealDetails?.strYoutube?.split('=')[1] || '';
 
   if (detailsLoading) return <p className={styles.errorText}>Loading...</p>;
   if (error) return <p>{error}</p>;

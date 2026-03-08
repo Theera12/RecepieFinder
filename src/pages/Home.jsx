@@ -120,7 +120,7 @@ function Home() {
           alt="Animated description"
         />
       ) : recipes.length === 0 ? (
-        <h2 p className={styles.errorText}>
+        <h2 className={styles.errorText}>
           'No Recipes Found...! <br />
           Please search New Recipie..'
         </h2>
@@ -132,15 +132,20 @@ function Home() {
         </div>
       )}
       {/* Pagination Controls */}
-      <nav>
-        <ul className={styles.pagination}>
-          {pageNumbers.map((number) => (
-            <li key={number} className={currentPage === number ? 'active' : ''}>
-              <button onClick={() => paginate(number)}>{number}</button>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      {recipes.length > 0 && (
+        <nav>
+          <ul className={styles.pagination}>
+            {pageNumbers.map((number) => (
+              <li
+                key={number}
+                className={currentPage === number ? 'active' : ''}
+              >
+                <button onClick={() => paginate(number)}>{number}</button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
       {/*Error Handling */}
       {error && (
         <div>

@@ -1,11 +1,14 @@
-# React - Recepie Finder App - TASTY BOOK
+# React - Recipe Finder App - COOK BOOK
 
-A simple todo application built with React.js and Vite. This app allows you to search for recepies and and add your favourites using User Interface.
+A simple Recipe Finder application built with React.js and Vite. This app allows you to search for recepies and search based on category suggestions using User Interface.
 
 ## Features
 
-- Search recepies: Easily search recepies by name
-- favourites: Add your favourite recepies to your favourite list.
+- Search recipes: Easily search recipes by name and category
+- Add Recipe: Create , Updatate , Delete any recipe and store.
+- Favourites: Add your favourite recipes to your favourite list and delete the unwanted favourite.
+- Rating : rate your recipes with star ratings.
+- Shopping List: Add any ingredients to shopping list and delete them if not needed.
 
 ## Technologies Used#
 
@@ -26,3 +29,4 @@ A simple todo application built with React.js and Vite. This app allows you to s
 - npm install --save-dev --save-exact prettier
 - npm install react-router
 - npm install react-icons --save
+- npm install react-router-dom
