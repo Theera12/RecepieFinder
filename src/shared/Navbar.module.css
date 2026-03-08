@@ -55,9 +55,31 @@ span {
   color: rgb(209, 68, 68);
   font-weight: 600;
 }
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+}
+
 @media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
   .navlinksContainer {
-    display: flex;
+    display: none;
     flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .showMenu {
+    display: flex;
   }
 }
