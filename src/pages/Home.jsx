@@ -2,6 +2,7 @@ import RecipeCard from '../features/RecipeCard';
 import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
 import { searchRecipesByCategory, loadCategories } from '../services/api';
+import burgerLoader from '../assets/burger.gif';
 
 function Home() {
   const [inputValue, setInputValue] = useState('');
@@ -90,9 +91,13 @@ function Home() {
         </form>
       </div>
       {categoryLoading ? (
-        <p>Loading...</p>
+        <img
+          src={burgerLoader}
+          className={styles.errorText}
+          alt="Animated description"
+        />
       ) : categories.length === 0 ? (
-        <h6>Failed to Load Suggestions..</h6>
+        <h6 className={styles.errorText}>Failed to Load Suggestions..</h6>
       ) : (
         <div className={styles.categoryContainer}>
           {categories.map((category) => (
@@ -109,9 +114,13 @@ function Home() {
         </div>
       )}
       {loading ? (
-        <p>Loading...</p>
+        <img
+          src={burgerLoader}
+          className={styles.errorText}
+          alt="Animated description"
+        />
       ) : recipes.length === 0 ? (
-        <h2>
+        <h2 p className={styles.errorText}>
           'No Recipes Found...! <br />
           Please search New Recipie..'
         </h2>
@@ -135,7 +144,7 @@ function Home() {
       {/*Error Handling */}
       {error && (
         <div>
-          <p>{error}:Failed To Fetch Recipes..</p>
+          <p className={styles.errorText}>{error}:Failed To Fetch Recipes..</p>
           <button onClick={() => setErrorMessage('')}>Dismiss</button>
         </div>
       )}

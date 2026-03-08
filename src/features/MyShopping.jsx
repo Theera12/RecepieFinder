@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const ShoppingList = styled.div`
   width: 350px;
@@ -71,7 +72,10 @@ function MyShopping() {
             {shoppingList.map((item) => (
               <li key={item.id}>
                 {item.ingredient} - {item.measure}
-                <button onClick={() => handleDeleteList(item.id)}>X</button>
+                <button onClick={() => handleDeleteList(item.id)}>
+                  {' '}
+                  <FaTrashAlt />
+                </button>
               </li>
             ))}
           </ul>

@@ -20,8 +20,9 @@ h4 {
 }
 .favouriteButton :hover {
   color: rgb(209, 68, 68);
-  transform: scale(1.05);
+  transform: scale(1.15);
 }
+
 .directionButton {
   padding: 10px 15px;
   background-color: rgb(209, 68, 68);

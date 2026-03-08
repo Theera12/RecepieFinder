@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import styles from './MealDetails.module.css';
+import { IoBagAddOutline } from 'react-icons/io5';
 
 let vId = '';
 const Numbers = Array.from({ length: 20 }, (_, i) => i + 1);
@@ -31,7 +32,7 @@ function MealDetails() {
     MealData();
   }, [MealId]);
 
-  //  Initialize state from localStorage or 0
+  //  Initialize rating state from localStorage or 0
   const [rating, setRating] = useState(() => {
     const savedRating = localStorage.getItem(`meal-rating-${MealId}`);
     return savedRating ? JSON.parse(savedRating) : 0;
@@ -42,7 +43,7 @@ function MealDetails() {
     localStorage.setItem(`meal-rating-${MealId}`, JSON.stringify(rating));
   }, [rating, MealId]);
 
-  //  Initialize state from localStorage or empty array
+  //  Initialize state from localStorage or empty array for shopping list
   const [shoppingList, setShoppingList] = useState(() => {
     const savedList = localStorage.getItem('list');
     return savedList ? JSON.parse(savedList) : [];
@@ -64,7 +65,7 @@ function MealDetails() {
     vId = str[str.length - 1];
   }
 
-  if (detailsLoading) return <p>Loading...</p>;
+  if (detailsLoading) return <p className={styles.errorText}>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
@@ -100,7 +101,7 @@ function MealDetails() {
                             ])
                           }
                         >
-                          +
+                          <IoBagAddOutline />
                         </button>
                       </li>
                     )

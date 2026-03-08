@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { BiEditAlt } from 'react-icons/bi';
+import { FaTrashAlt } from 'react-icons/fa';
+
 const Card = styled.div`
   width: 250px;
   height: 300px;
@@ -30,8 +33,12 @@ function RecipeItem({ myRecipe, onDelete, onEdit }) {
     <Card>
       <h2>{myRecipe.name}</h2>
       <p>{myRecipe.instruction}</p>
-      <button onClick={() => onEdit(myRecipe)}>Edit</button>
-      <button onClick={() => onDelete(myRecipe.id)}>Delete</button>
+      <button onClick={() => onEdit(myRecipe)}>
+        <BiEditAlt />
+      </button>
+      <button onClick={() => onDelete(myRecipe.id)}>
+        <FaTrashAlt />
+      </button>
     </Card>
   );
 }

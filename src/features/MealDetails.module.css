@@ -27,7 +27,11 @@
   padding: 0;
   margin: 0;
 }
-
+.errorText {
+  text-align: center;
+  margin-top: 40px;
+  opacity: 0.8;
+}
 h1 {
   align-self: auto;
 }

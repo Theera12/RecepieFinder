@@ -87,7 +87,14 @@ h1 {
 .pagination li {
   list-style-type: none;
 }
-
+.errorText {
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+  opacity: 0.8;
+  width: 50px;
+  height: 50px;
+}
 @media (max-width: 768px) {
   .mainContainer {
     padding-left: 1rem;
