@@ -27,9 +27,20 @@ h1 {
   font-family: 'Inconsolata', monospace;
   text-shadow: 0 1px 2px rgb(145, 135, 135);
 }
+
 .trolleyIcon {
   height: 20px;
   width: 20px;
+}
+.iconNav {
+  font-size: 10px;
+  text-align: center;
+  color: rgb(145, 135, 135);
+  margin-top: 2px;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+  display: block;
 }
 span {
   color: rgb(209, 68, 68);

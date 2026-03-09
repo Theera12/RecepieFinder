@@ -4,6 +4,9 @@ import { NavLink } from 'react-router';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import bookIcon from '../assets/book.png';
 import trolley from '../assets/trolley.png';
+import heart from '../assets/smile.png';
+import home from '../assets/home.png';
+import chef from '../assets/chef.png';
 
 function Navbar() {
   const [navbarIcon, setNavbarIcon] = useState(false);
@@ -40,7 +43,8 @@ function Navbar() {
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
         >
-          Home
+          <img src={home} alt="home icon" className={styles.trolleyIcon}></img>
+          <span className={styles.iconNav}>Home</span>
         </NavLink>
         <NavLink
           to="/myrecipes"
@@ -48,7 +52,8 @@ function Navbar() {
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
         >
-          My Recipes
+          <img src={chef} alt="my recipe" className={styles.trolleyIcon} />
+          <span className={styles.iconNav}>Recipes</span>
         </NavLink>
         <NavLink
           to="/favourites"
@@ -56,7 +61,8 @@ function Navbar() {
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
         >
-          Favourites
+          <img src={heart} alt="favourite" className={styles.trolleyIcon} />
+          <span className={styles.iconNav}>Favourites</span>
         </NavLink>
         <NavLink
           to="/myshopping"
@@ -69,6 +75,7 @@ function Navbar() {
             alt="shopping list"
             className={styles.trolleyIcon}
           />
+          <span className={styles.iconNav}>Shopping</span>
         </NavLink>
       </div>
     </div>
