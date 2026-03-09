@@ -4,7 +4,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 const ShoppingList = styled.div`
   width: 350px;
-  height: 300px;
+  height: 100%;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0px 8px 15px rgb(224, 214, 214);
