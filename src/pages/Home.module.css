@@ -85,7 +85,10 @@ h1 {
 .errorText button:hover {
   background-color: rgb(145, 135, 135);
 }
-
+.active {
+  border-bottom: 5px solid #ea0909;
+  border-radius: 20px;
+}
 .pagination li {
   list-style-type: none;
 }

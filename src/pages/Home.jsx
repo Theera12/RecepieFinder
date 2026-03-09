@@ -1,6 +1,6 @@
 import RecipeCard from '../features/RecipeCard';
 import styles from './Home.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { searchRecipesByCategory, loadCategories } from '../services/api';
 import burgerLoader from '../assets/burger.gif';
 
@@ -13,7 +13,8 @@ function Home() {
   const [categoryLoading, setCategoryLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [recipesPerPage] = useState(8);
+  const recipesPerPage = 8;
+  const inputRef = useRef(null);
 
   // Pagination Calcultion
   const indexOfLastRecipe = currentPage * recipesPerPage;
@@ -77,17 +78,24 @@ function Home() {
     setInputValue(e.target.value);
   };
 
+  const handleSearch = () => {
+    inputRef.current.focus();
+  };
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.searchContainer}>
         <form onSubmit={onSearchSubmitForm}>
           <input
             type="text"
-            placeholder="Search For recepie..."
+            placeholder="Please search a new recipe.."
             onChange={onFormChange}
             value={inputValue}
+            ref={inputRef}
           />
-          <button type="submit">Search</button>
+          <button type="submit" onClick={handleSearch}>
+            Search
+          </button>
         </form>
       </div>
       {categoryLoading ? (
@@ -138,7 +146,7 @@ function Home() {
             {pageNumbers.map((number) => (
               <li
                 key={number}
-                className={currentPage === number ? 'active' : ''}
+                className={currentPage === number ? styles.active : ''}
               >
                 <button onClick={() => paginate(number)}>{number}</button>
               </li>
@@ -149,7 +157,7 @@ function Home() {
       {/*Error Handling */}
       {error && (
         <div className={styles.errorText}>
-          <p>{error}:Failed To Fetch Recipes..</p>
+          <p>{error}</p>
           <button onClick={() => setErrorMessage('')}>Dismiss</button>
         </div>
       )}
