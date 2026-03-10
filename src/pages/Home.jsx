@@ -113,6 +113,7 @@ function Home() {
               key={category.strCategory}
               onClick={(e) => {
                 setSearchQuery(category.strCategory);
+                setInputValue(category.strCategory);
                 setCurrentPage(1);
               }}
             >
