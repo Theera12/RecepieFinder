@@ -18,7 +18,7 @@ A simple Recipe Finder application built with React.js and Vite. This app allows
 ## Getting Started#
 
 - To get a local copy of the project up and running, follow these steps:
-- Clone the repository: 'https://github.com/Theera12/RecepieFinder'
+- Clone the repository: 'https://github.com/Theera12/Cookbook'
 - Navigate to the project directory: cd your-repo
 - Install the dependencies: npm install
 - Start the development server: npm run dev
