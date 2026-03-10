@@ -4,8 +4,8 @@ import Favourites from './pages/Favourites';
 import MyRecipes from './pages/MyRecipes';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
-import MealDetails from './features/MealDetails';
-import MyShopping from './features/MyShopping';
+import MealDetails from './pages/MealDetails';
+import MyShopping from './pages/MyShopping';
 import Footer from './shared/Footer';
 import { Routes, Route } from 'react-router';
 

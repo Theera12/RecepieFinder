@@ -63,7 +63,7 @@ function MyShopping() {
 
   return (
     <Outer>
-      <h1>My SHOPPING LIST</h1>
+      <h1>MY SHOPPING LIST</h1>
       <ShoppingList>
         {shoppingList.length === 0 ? (
           <p>No items added</p>
