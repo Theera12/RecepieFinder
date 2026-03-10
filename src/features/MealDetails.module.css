@@ -28,9 +28,12 @@
   margin: 0;
 }
 .errorText {
-  text-align: center;
+  display: block;
+  margin: 0 auto;
   margin-top: 40px;
   opacity: 0.8;
+  width: 100px;
+  height: 100px;
 }
 h1 {
   align-self: auto;

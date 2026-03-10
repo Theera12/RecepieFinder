@@ -6,7 +6,6 @@ export const loadCategories = async () => {
   url = `${BASE_URL}/list.php?c=list`;
   const resp = await fetch(url);
   const data = await resp.json();
-
   return data.meals || [];
 };
 

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import styles from './MealDetails.module.css';
 import { IoBagAddOutline } from 'react-icons/io5';
+import burgerLoader from '../assets/burger.gif';
 
 const Numbers = Array.from({ length: 20 }, (_, i) => i + 1);
 const Stars = Array.from({ length: 5 }, (_, i) => i + 1);
@@ -11,6 +12,7 @@ function MealDetails() {
   const { mealId } = useParams();
   const [mealDetails, setMealDetails] = useState(null);
   const [detailsLoading, setDetailsLoading] = useState(true);
+  const [savingId, setSavingId] = useState(null);
   const [error, setError] = useState('');
   let nav = useNavigate();
 
@@ -57,10 +59,31 @@ function MealDetails() {
     nav(`/myshopping`);
   };
 
+  //handle add button
+  const handleAddItem = (ingredient, measure, id) => {
+    setSavingId(id);
+
+    setShoppingList((prev) => [
+      ...prev,
+      { ingredient, measure, id: Date.now() },
+    ]);
+
+    setTimeout(() => {
+      setSavingId(null);
+    }, 500);
+  };
+
   //To embed video id to youtube
   const vId = mealDetails?.strYoutube?.split('=')[1] || '';
 
-  if (detailsLoading) return <p className={styles.errorText}>Loading...</p>;
+  if (detailsLoading)
+    return (
+      <img
+        src={burgerLoader}
+        className={styles.errorText}
+        alt="Animated description"
+      />
+    );
   if (error) return <p>{error}</p>;
 
   return (
@@ -84,19 +107,15 @@ function MealDetails() {
                   return (
                     ingredient && (
                       <li key={number}>
-                        {ingredient}--{measure}
-                        {/*Adds the ingredients to shopping list */}
+                        {ingredient} -- {measure}
                         <button
                           className={styles.plusButton}
                           onClick={() =>
-                            setShoppingList((prev) => [
-                              ...prev,
-
-                              { ingredient, measure, id: Date.now() },
-                            ])
+                            handleAddItem(ingredient, measure, number)
                           }
+                          disabled={savingId === number}
                         >
-                          <IoBagAddOutline />
+                          {savingId === number ? '⏳' : <IoBagAddOutline />}
                         </button>
                       </li>
                     )
